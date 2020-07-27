@@ -1,10 +1,10 @@
-package com.kodilla.testing.collection;
+package NewCollection;
 
 import java.util.ArrayList;
 
-public class OddNumbersExterminator {
+public class OddNumberExterminator {
 
-    ArrayList<Integer> exterminate(ArrayList<Integer> numbers) {
+    public ArrayList<Integer> exterminate(ArrayList<Integer> numbers) {
         ArrayList<Integer> even = new ArrayList<Integer>();
         for (Integer number : numbers) {
             if (number % 2 == 0) {
@@ -14,7 +14,3 @@ public class OddNumbersExterminator {
         return even;
     }
 }
-
-
-
-
