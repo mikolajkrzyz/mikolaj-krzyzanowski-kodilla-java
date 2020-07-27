@@ -1,6 +1,5 @@
-package CollectionTest;
+package com.kodilla.testing.collection;
 
-import NewCollection.OddNumberExterminator;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,27 +15,33 @@ public class CollectionTestSuite {
 
     @Test
     public void testOddNumbersExterminatorEmptyList () {
+        //Given
         OddNumberExterminator exterminator = new OddNumberExterminator ();
-        ArrayList<Integer> emptyList = new ArrayList<Integer>();
+        ArrayList<Integer> emptyList = new ArrayList<>();
+        //When
         ArrayList<Integer> result = exterminator.exterminate(emptyList);
-        Assert.assertTrue(result.size()==0);
+        //Then
+        Assert.assertEquals(0, result.size());
     }
     @Test
     public void testOddNumbersExterminatorNormalList () {
+        //Given
         OddNumberExterminator exterminator = new OddNumberExterminator ();
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> list = new ArrayList<>();
         list.add(2);
         list.add(9);
         list.add(524);
         list.add(5);
         list.add(4);
 
+        ArrayList<Integer> expected = new ArrayList<>();
+        expected.add(2);
+        expected.add(524);
+        expected.add(4);
+        //When
         ArrayList<Integer> result = exterminator.exterminate(list);
-        Assert.assertTrue(result.size()!=0);
-        for (Integer element : result) {
-            Assert.assertTrue(element %2==0);
-
-        }
+        //Then
+        Assert.assertEquals(expected,result);
     }
     @After
     public void end () {

@@ -1,4 +1,4 @@
-package NewCollection;
+package com.kodilla.testing.collection;
 
 import java.util.ArrayList;
 
