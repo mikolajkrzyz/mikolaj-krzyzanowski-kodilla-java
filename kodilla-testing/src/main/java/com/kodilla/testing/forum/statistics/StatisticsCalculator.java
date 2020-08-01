@@ -1,6 +1,6 @@
 package com.kodilla.testing.forum.statistics;
 
-class statisticsCalculator { //klasa, która liczy statystyki
+class StatisticsCalculator { //klasa, która liczy statystyki
 
     private int usersQuantity;
     private int postsQuantity;
@@ -9,17 +9,7 @@ class statisticsCalculator { //klasa, która liczy statystyki
     private double averageCommentsPerUser;
     private double averageCommentsPerPost;
 
-    public statisticsCalculator(int usersQuantity, int postsQuantity, int commentsQuantity, double averagePostsPerUser, double averageCommentsPerUser, double averageCommentsPerPost) {
-        this.usersQuantity = usersQuantity;
-        this.postsQuantity = postsQuantity;
-        this.commentsQuantity = commentsQuantity;
-        this.averagePostsPerUser = averagePostsPerUser;
-        this.averageCommentsPerUser = averageCommentsPerUser;
-        this.averageCommentsPerPost = averageCommentsPerPost;
-    }
-
-    public statisticsCalculator() {
-
+    public StatisticsCalculator() {
     }
 
 
@@ -55,7 +45,7 @@ class statisticsCalculator { //klasa, która liczy statystyki
 
     private double calculateAveragePostsPerUser() { //obliczanie sredniej postow na uzytkownika
         if (usersQuantity > 0) {
-            return postsQuantity / usersQuantity;
+            return (double)postsQuantity / (double)usersQuantity;
         } else {
             return 0;
         }
@@ -63,7 +53,7 @@ class statisticsCalculator { //klasa, która liczy statystyki
 
     private double calculateAverageCommentsPerUser() { // obliczanie sredniej komentarzy na uzytkownika
         if (usersQuantity>0) {
-            return commentsQuantity/usersQuantity;
+            return (double)commentsQuantity/(double)usersQuantity;
         } else {
             return 0;
         }
@@ -71,7 +61,7 @@ class statisticsCalculator { //klasa, która liczy statystyki
 
     private double calculateAverageCommentsPerPost () { // obliczania sredniej komentarzy na post
         if (postsQuantity>0) {
-            return commentsQuantity/postsQuantity;
+            return (double)commentsQuantity/(double)postsQuantity;
         } else {
             return 0;
         }

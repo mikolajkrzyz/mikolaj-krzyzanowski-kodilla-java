@@ -12,11 +12,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
-public class statisticsCalculatorTestSuite {
+public class StatisticsCalculatorTestSuite {
 
         private Statistics statisticsMock;
 
-        statisticsCalculator statisticsCalculatorstat = new statisticsCalculator();
+        StatisticsCalculator statisticsCalculatorstat = new StatisticsCalculator();
 
     @Before
         public void beforeTest(){
@@ -32,7 +32,7 @@ public class statisticsCalculatorTestSuite {
         }
 
     @Test
-    public void testZeroPosts() {     //gdy liczba postow 0
+    public void testZeroPosts() { //gdy liczba postow 0
         //Given
         when(statisticsMock.postsCount()).thenReturn(0);
         //When
@@ -63,12 +63,25 @@ public class statisticsCalculatorTestSuite {
         statisticsCalculatorstat.calculateAdvStatistics(statisticsMock);
         //Then
         assertEquals(0, statisticsCalculatorstat.getCommentsQuantity());
-        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerUser());
-        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerPost());
+        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerUser(),0.05);
+        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerPost(),0.05);
     }
 
     @Test
     public void testCommentsLessThanPosts(){ //gdy komentarzy mniej niz postow
+        //Given
+        when(statisticsMock.commentsCount()).thenReturn(10);
+        when(statisticsMock.postsCount()).thenReturn(20);
+        //When
+        statisticsCalculatorstat.calculateAdvStatistics(statisticsMock);
+        //Then
+        assertEquals(20, statisticsCalculatorstat.getPostsQuantity());
+        assertEquals(10, statisticsCalculatorstat.getCommentsQuantity());
+        assertEquals(0.5, statisticsCalculatorstat.getAverageCommentsPerPost(),0.05);
+    }
+
+    @Test
+    public void testCommentsMoreThanPosts(){  //gdy komentrzy wiecej niz postow
         //Given
         when(statisticsMock.commentsCount()).thenReturn(10);
         when(statisticsMock.postsCount()).thenReturn(2);
@@ -77,36 +90,21 @@ public class statisticsCalculatorTestSuite {
         //Then
         assertEquals(2, statisticsCalculatorstat.getPostsQuantity());
         assertEquals(10, statisticsCalculatorstat.getCommentsQuantity());
-        assertEquals(0, statisticsCalculatorstat.getAveragePostsPerUser());
-        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerUser());
-        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerPost());
-    }
-
-    @Test
-    public void testCommentsMoreThanPosts(){  //gdy komentrzy wiecej niz postow
-        //Given
-
-        //When
-        statisticsCalculatorstat.calculateAdvStatistics(statisticsMock);
-        //Then
-        assertEquals(0, statisticsCalculatorstat.getPostsQuantity());
-        assertEquals(0, statisticsCalculatorstat.getCommentsQuantity());
-        assertEquals(0, statisticsCalculatorstat.getAveragePostsPerUser());
-        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerUser());
-        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerPost());
+        assertEquals(5, statisticsCalculatorstat.getAverageCommentsPerPost(),0.05);
     }
 
     @Test
     public void testZeroUsers(){//gdy zero uzytkownikow
         //Given
+        Statistics statisticsMock2 = mock(Statistics.class);
         List<String>listMock = new ArrayList<>();
-        when(statisticsMock.usersNames()).thenReturn(listMock);
+        when(statisticsMock2.usersNames()).thenReturn(listMock);
         //When
-        statisticsCalculatorstat.calculateAdvStatistics(statisticsMock);
+        statisticsCalculatorstat.calculateAdvStatistics(statisticsMock2);
         //Then
         assertEquals(0, statisticsCalculatorstat.getUsersQuantity());
-        assertEquals(0, statisticsCalculatorstat.getAveragePostsPerUser());
-        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerUser());
+        assertEquals(0, statisticsCalculatorstat.getAveragePostsPerUser(),0.05);
+        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerUser(), 0.05);
 
     }
 
