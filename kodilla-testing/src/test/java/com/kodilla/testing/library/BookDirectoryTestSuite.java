@@ -108,16 +108,16 @@ public class BookDirectoryTestSuite {
 
     @Test
         public void testlistBooksInHandsOfUserOneBorrowBook() {
+            LibraryUser libraryUserRadoslawGer = new LibraryUser("Radoslaw", "Ger", "123456");
+
             // Given
             LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class); //tworzę mocka interfejsu LibraryDatabase,
             BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock); //tutaj go wstrzykuję
 
             List<Book> oneBorrowBookByUser = generateListOfNBooks(1); //tutaj tworzę liste wypozyczonych ksiazek, tu 1
 
-            when(libraryDatabaseMock.listBooksInHandsOf(anyObject())).thenReturn(oneBorrowBookByUser);
+            when(libraryDatabaseMock.listBooksInHandsOf(libraryUserRadoslawGer)).thenReturn(oneBorrowBookByUser);
             //When
-            LibraryUser libraryUserRadoslawGer = new LibraryUser("Radoslaw", "Ger", "123456");
-
             List<Book> oneBorrowBookByUserRadoslawger = bookLibrary.listBooksInHandsOf(libraryUserRadoslawGer);
 
             // Then
@@ -126,17 +126,18 @@ public class BookDirectoryTestSuite {
 
             @Test
             public void testlistBooksInHandsOfUserFiveBorrowBooks(){
+                LibraryUser libraryUserMarcinLask = new LibraryUser("Marcin", "Lask", "654321");
                 // Given
                 LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
                 BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
 
                 List<Book> fiveBorrowBooksByUser = generateListOfNBooks(5);
 
-                when(libraryDatabaseMock.listBooksInHandsOf(anyObject())).thenReturn(fiveBorrowBooksByUser);
+                when(libraryDatabaseMock.listBooksInHandsOf(libraryUserMarcinLask)).thenReturn(fiveBorrowBooksByUser);
                 //When
-                LibraryUser libraryUserMarcinLask = new LibraryUser("Marcin", "Lask", "654321");
 
                 List<Book> fiveBorrowBooksByUserMarcinLask = bookLibrary.listBooksInHandsOf(libraryUserMarcinLask);
+
 
                 // Then
                 assertEquals(5, fiveBorrowBooksByUserMarcinLask.size());
