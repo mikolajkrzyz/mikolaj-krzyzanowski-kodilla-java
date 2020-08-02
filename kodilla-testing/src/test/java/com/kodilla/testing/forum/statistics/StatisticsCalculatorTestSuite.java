@@ -39,8 +39,8 @@ public class StatisticsCalculatorTestSuite {
         statisticsCalculatorstat.calculateAdvStatistics(statisticsMock);
         //Then
         assertEquals(0, statisticsCalculatorstat.getPostsQuantity());
-        assertEquals(0, statisticsCalculatorstat.getPostsQuantity());
-        assertEquals(0, statisticsCalculatorstat.getCommentsQuantity());
+        assertEquals(0, statisticsCalculatorstat.getAveragePostsPerUser(), 0.05);
+
     }
 
     @Test
@@ -51,8 +51,8 @@ public class StatisticsCalculatorTestSuite {
         statisticsCalculatorstat.calculateAdvStatistics(statisticsMock);
         //Then
         assertEquals(1000, statisticsCalculatorstat.getPostsQuantity());
-        assertEquals(100, statisticsCalculatorstat.getAveragePostsPerUser());
-        assertEquals(0.08, statisticsCalculatorstat.getAverageCommentsPerPost());
+        assertEquals(100, statisticsCalculatorstat.getAveragePostsPerUser(),0.05);
+
     }
 
     @Test
@@ -116,12 +116,13 @@ public class StatisticsCalculatorTestSuite {
             listMock.add("Users");
         }
         when(statisticsMock.usersNames()).thenReturn(listMock);
+
         //When
         statisticsCalculatorstat.calculateAdvStatistics(statisticsMock);
         //Then
-        assertEquals(0, statisticsCalculatorstat.getUsersQuantity());
-        assertEquals(0, statisticsCalculatorstat.getAveragePostsPerUser());
-        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerUser());
+        assertEquals(100, statisticsCalculatorstat.getUsersQuantity());
+        assertEquals(0.5, statisticsCalculatorstat.getAveragePostsPerUser(), 0.05);
+        assertEquals(1, statisticsCalculatorstat.getAverageCommentsPerUser(), 0.05);
     }
 }
 
