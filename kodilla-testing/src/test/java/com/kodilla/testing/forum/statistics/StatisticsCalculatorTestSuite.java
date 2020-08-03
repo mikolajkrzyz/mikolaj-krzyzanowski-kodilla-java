@@ -16,7 +16,7 @@ public class StatisticsCalculatorTestSuite {
 
         private Statistics statisticsMock;
 
-        StatisticsCalculator statisticsCalculatorstat = new StatisticsCalculator();
+        private StatisticsCalculator statisticsCalculatorstat = new StatisticsCalculator();
 
     @Before
         public void beforeTest(){
@@ -40,6 +40,8 @@ public class StatisticsCalculatorTestSuite {
         //Then
         assertEquals(0, statisticsCalculatorstat.getPostsQuantity());
         assertEquals(0, statisticsCalculatorstat.getAveragePostsPerUser(), 0.05);
+        assertEquals(10, statisticsCalculatorstat.getAverageCommentsPerUser(),0.05);
+        assertEquals(0, statisticsCalculatorstat.getAverageCommentsPerPost(),0.05);
 
     }
 
@@ -52,6 +54,8 @@ public class StatisticsCalculatorTestSuite {
         //Then
         assertEquals(1000, statisticsCalculatorstat.getPostsQuantity());
         assertEquals(100, statisticsCalculatorstat.getAveragePostsPerUser(),0.05);
+        assertEquals(10, statisticsCalculatorstat.getAverageCommentsPerUser(),0.05);
+        assertEquals(0.1, statisticsCalculatorstat.getAverageCommentsPerPost(),0.05);
 
     }
 
